@@ -19,14 +19,14 @@
     }
   ],
   "paths": {
-    "/plants": {
+    "/antiddos/incidents": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "description": "Returns DDoS attacks reported by analysis",
         "parameters": [
           {
-            "name": "limit",
+            "name": "size",
             "in": "query",
-            "description": "The maximum number of results to return",
+            "description": "Default value : 500",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -35,7 +35,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Returns DDoS attacks as json array of objects.",
             "content": {
               "application/json": {
                 "schema": {
@@ -47,8 +47,8 @@
               }
             }
           },
-          "400": {
-            "description": "Unexpected error",
+          "401": {
+            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
