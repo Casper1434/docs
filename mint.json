@@ -63,7 +63,7 @@
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "DDoS Mitigation",
       "pages": [
         "api-reference/endpoint/get",
         "api-reference/endpoint/create",

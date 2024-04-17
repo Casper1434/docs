@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "Ck IT Solutions API",
+    "description": "An API that can be used to mange Ck IT Solutions products and services.",
     "license": {
       "name": "MIT"
     },
@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://api.ck-itsolutions.nl/v1"
     }
   ],
   "security": [
@@ -19,23 +19,12 @@
     }
   ],
   "paths": {
-    "/plants": {
+    "/firewall/rule/{uuid}": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
+        "description": "Retrieves anti-ddos firewall rules",
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Lists all firewallrules created",
             "content": {
               "application/json": {
                 "schema": {
