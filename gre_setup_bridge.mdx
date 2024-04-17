@@ -58,5 +58,6 @@ IP address: 191.80.60.130
 Mask: 255.255.255.248 (depends on the subnet)
 Gateway: 171.32.42.129
 ```
+<Tip>We recommend setting the MTU of the bridge / VM network interface to **1476** as otherwise packet fragmentation may occur.</Tip>
 
 That's it! Configure the network bridge and IPs in Virtfusion. On a server restart all the things we did will be wiped out. To make sure the GRE tunnel and everything else is going to work after a restart we have to edit the file ```/etc/rc.local``` and add all the commands we did (except for the echo ones!) before the ```exit 0```.
