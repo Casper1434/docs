@@ -5,7 +5,7 @@
     "dark": "https://images.ck-itsolutions.nl/ckitsolutions/logo-dark.svg",
     "light": "https://images.ck-itsolutions.nl/ckitsolutions/logo-light.svg"
   },
-  "favicon": "https://images.ck-itsolutions.nl/ckitsolutions/favicon.svg",
+  "favicon": "./favicon.svg",
   "colors": {
     "primary": "#F08E4D",
     "light": "#F08E4D",
