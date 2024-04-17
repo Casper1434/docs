@@ -1,0 +1,62 @@
+---
+title: GRE Setup Network Bridge
+description: 'This guides shows how to use Remote IPv4 IPs, tunnelled via GRE to your hypervisor and use the IPs on your VMs.'
+---
+
+### General Information ###
+IP block we want to use on server B: `171.32.42.128/29`
+
+Internal IP Block used for communication: `10.0.0.0/30`
+
+Bridge interface server B: `br0`
+
+### Server B ###
+1. Setup the GRE tunnel on server B.
+```
+ip tunnel add gre1 mode gre local <IP server B> remote <IP server A> ttl 255
+ip addr add 10.0.0.2/30 dev gre1
+ip link set gre1 up
+```
+2. Enable IP forwarding. **[only execute once]**
+```
+sudo modprobe ip_gre
+lsmod | grep gre
+sudo apt install iptables iproute2
+sudo echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
+sudo sysctl -p
+```
+
+3. Route data from the GRE tunnel to the bridge and back.
+```
+ip route add default dev gre1 table 3
+ip rule add from 171.32.42.128/29 table 3
+ip route add 171.32.42.128/29 dev br0 table 3
+ip addr add 171.32.42.128/29 dev br0 (If not already added to the bridge via netplan config)
+```
+You should be able to ping server A from server B.
+```
+Ping Server B
+ping 10.0.0.2
+```
+
+
+To configure netplan, save configuration files under ```/etc/netplan/``` with a ```.yaml``` extension (e.g. ```/etc/netplan/config.yaml)```,
+then run ```sudo netplan apply```. This command parses and applies the configuration to the system. Configuration written to disk under ```/etc/netplan/``` will persist between reboots.
+Example file contents : ```/etc/netplan/01-netcfg.yaml```
+
+**Note:** _You will need the bridge-utils package installed on your server_
+
+4. Add the following lines to the netplan file on the same level as "ethernets"
+```
+bridges:
+  br0:
+    addresses: ["171.32.42.129/29"]
+```
+Use the following network config in the adapter of your VM:
+```
+IP address: 191.80.60.130
+Mask: 255.255.255.248 (depends on the subnet)
+Gateway: 171.32.42.129
+```
+
+That's it! Configure the network bridge and IPs in Virtfusion. On a server restart all the things we did will be wiped out. To make sure the GRE tunnel and everything else is going to work after a restart we have to edit the file ```/etc/rc.local``` and add all the commands we did (except for the echo ones!) before the ```exit 0```.

@@ -1,0 +1,29 @@
+---
+title: Technical Overview
+description: 'This is a technical overview of our Remote IPv4 infrastructure'
+---
+
+### DDoS Mitigation ###
+We offer best-effort L4 DDoS mitigation and we can usually mitigate attacks up to 1Tbps (or sometimes larger). However, if you do happen to get frequent DDoS attacks with large capacities and/or methods that we cannot mitigate which start impacting other users, we may ask you to move to one of our services dedicated to DDoS Mitigation. In general, we would recommend you to avoid attracting or getting DDoS attacks.
+
+### Network Traffic ###
+Our (redundant) routers run with an 10Gbit/s shared port. You can expect to reach about 5Gbit/s - 7Gbit/s through the tunnel. We apply a fair use policy which means that each IP address gets about 1TB of traffic per month. Should the traffic be fully used, the port will be throttled.
+
+### Pricing ###
+<Accordion title="Remote IPv4 Pricing (Monthly) (Frankfurt)">
+
+**GRE Tunnel:** €3,50
+
+**Setup:** €1,50
+
+| Subnet   | Price                           | Usable IPs                           |
+| -------- | ------------------------------------- | ------------------------------------- |
+| /31      | €3,15             | 2 IPs                    |
+| /30      | €6,30 | 2 IPs   |
+| /29      | €12,60 | 6 IPs   |
+| /28   | €25,20 | 12 IPs   |
+| /27   | €50,40 | 30 IPs   |
+| /26   | €100,80 | 62 IPs   |
+| /25   | €144,90 | 126 IPs   |
+| /24   | €195 (€25 Setup) | 254 IPs   |
+</Accordion>

@@ -1,18 +1,18 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Ck IT Solutions Documentation",
+  "name": "Documentation",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "https://images.ck-itsolutions.nl/ckitsolutions/logo-dark.svg",
+    "light": "https://images.ck-itsolutions.nl/ckitsolutions/logo-light.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://images.ck-itsolutions.nl/ckitsolutions/favicon.svg",
   "colors": {
-    "primary": "#F08F4D",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#F08E4D",
+    "light": "#F08E4D",
+    "dark": "#F08E4D",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#F08E4D",
+      "to": "#FABE50"
     }
   },
   "topbarLinks": [
@@ -22,20 +22,51 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard Ck IT Solutions",
+    "name": "Dashboard",
     "url": "https://billing.ck-itsolutions.nl"
   },
   "tabs": [
-    {
-      "name": "Documentation",
-      "url": "docs"
-    },
     {
       "name": "API Reference",
       "url": "api-reference"
     }
   ],
+  "anchors": [
+    {
+      "name": "Website",
+      "icon": "book-open-cover",
+      "url": "https://ck-hosting.com"
+    },
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://discord.gg/kDkkE6ns"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/CkHosting"
+    }
+  ],
   "navigation": [
+    {
+      "group": "Remote IPv4",
+      "pages": [
+        "gre_setup_bridge",
+        "technical"
+      ]
+    },
+    {
+      "group": "Essentials",
+      "pages": [
+        "essentials/markdown",
+        "essentials/code",
+        "essentials/images",
+        "essentials/settings",
+        "essentials/navigation",
+        "essentials/reusable-snippets"
+      ]
+    },
     {
       "group": "API Documentation",
       "pages": [
@@ -52,6 +83,5 @@
     }
   ],
   "footerSocials": {
-    "github": "https://github.com/ckhosting"
   }
 }
