@@ -15,11 +15,11 @@
   ],
   "security": [
     {
-      "bearerAuth": []
+      "ApiKeyAuth": []
     }
   ],
   "paths": {
-    "/firewall/rule/{uuid}": {
+    "/firewall/rule": {
       "get": {
         "description": "Retrieves anti-ddos firewall rules",
         "responses": {
@@ -30,7 +30,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "$ref": "#/components/schemas/list_rules"
                   }
                 }
               }
@@ -49,13 +49,13 @@
         }
       },
       "post": {
-        "description": "Creates a new plant in the store",
+        "description": "Creates a new firewall rule",
         "requestBody": {
           "description": "Plant to add to the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/new_firewall"
               }
             }
           },
@@ -63,11 +63,11 @@
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "Returns newly created firewall rule with uuid as json.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "$ref": "#/components/schemas/list_rules"
                 }
               }
             }
@@ -121,40 +121,49 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
+      "list_rules": {
         "required": [
           "name"
         ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
+        "type": "object"
       },
-      "NewPlant": {
+      "new_firewall": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Plant"
+            "$ref": "#/components/schemas/list_rules"
           },
           {
             "required": [
-              "id"
+              "descr",
+              "dst",
+              "protocol",
+              "action",
+              "priority"
             ],
             "type": "object",
             "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
+              "descr": {
+                "description": "Description of the Firewall rule.",
+                "type": "string"
+              },
+              "dst": {
+                "description": "Destination IP the firewall rule needs to be created for (subnets supported).",
+                "type": "string"
+              },
+              "protocol": {
+                "description": "IP Protocol: IPv4 / IPv6",
+                "type": "string"
+              },
+              "action": {
+                "description": "Allowed options: pass / block",
+                "type": "string"
+              },
+              "priority": {
+                "description": "Rule priority with 1 being highest priority.",
+                "type": "integer"
+              }
               }
             }
-          }
         ]
       },
       "Error": {
@@ -175,9 +184,10 @@
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
       }
     }
   }
