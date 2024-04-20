@@ -66,6 +66,7 @@
       "group": "DDoS Mitigation",
       "pages": [
         "api-reference/endpoint/get",
+        "api-reference/endpoint/get_specific",
         "api-reference/endpoint/create",
         "api-reference/endpoint/delete"
       ]

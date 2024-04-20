@@ -85,25 +85,52 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
+    "/firewall/rule/{uuid}": {
+      "get": {
+        "description": "Retrieves anti-ddos firewall rule based on uuid",
+        "responses": {
+          "200": {
+            "description": "Lists specific rule based on uuid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
             }
           }
+        }
+      },
+      "delete": {
+        "description": "Deletes anti-ddos firewall rule based on uuid.",
+        "parameters": [
         ],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
+          "200": {
+            "description": "Firewall rule marked for deletion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "unexpected error",
