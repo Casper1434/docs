@@ -150,17 +150,49 @@
                 "description": "Destination IP the firewall rule needs to be created for (subnets supported).",
                 "type": "string"
               },
+              "dstport": {
+                "description": "Destination port the firewall rule needs to be created for.",
+                "type": "string"
+              },
+              "src": {
+                "description": "Source IP the firewall rule needs to match (subnets supported).",
+                "type": "string"
+              },
+              "srcport": {
+                "description": "Source port the firewall rule needs to match.",
+                "type": "string"
+              },
               "protocol": {
-                "description": "IP Protocol: IPv4 / IPv6",
+                "description": "Internet Protocol version this rule applies to. Allowed options: any, tcp, udp, tcp/udp, esp, ah, gre, eoip, ipv6, igmp, pim, ospf, sctp, carp ",
                 "type": "string"
               },
               "action": {
-                "description": "Allowed options: pass / block",
+                "description": "Allowed options: pass, block",
                 "type": "string"
               },
               "priority": {
                 "description": "Rule priority with 1 being highest priority.",
                 "type": "integer"
+              },
+              "disabled": {
+                "description": "Enable or disable the firewall rule.",
+                "type": "boolean"
+              },
+              "icmptype": {
+                "description": "ICMP Subtypes, allowed options: althost, dataconv, echorep, echoreq,inforep, inforeq, ipv6-here, ipv6-where, maskrep, maskreq, mobredir, mobregrep, mobregreq, paramprob, photuris, redir, routeradv, routersol, skip, squench, timerep, timereq, timex, trace, unreach",
+                "type": "array"
+              },
+              "tcpflags_any": {
+                "description": "Allow TCP with any flags set",
+                "type": "boolean"
+              },
+              "tcpflags_set": {
+                "description": "TCP flags the rule must match to. Allowed options: fin, syn, rst, psh, ack, urg, ece, cwr",
+                "type": "array"
+              },
+              "tcpflags_out_of": {
+                "description": "TCP flags the rule must match to. Allowed options: fin, syn, rst, psh, ack, urg, ece, cwr",
+                "type": "array"
               }
               }
             }
@@ -173,10 +205,6 @@
         ],
         "type": "object",
         "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
           "message": {
             "type": "string"
           }
