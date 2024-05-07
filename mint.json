@@ -65,10 +65,26 @@
     {
       "group": "DDoS Mitigation",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/get_specific",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/get_firewall",
+        "api-reference/endpoint/get_specific_firewall",
+        "api-reference/endpoint/create_firewall",
+        "api-reference/endpoint/delete_firewall",
+        "api-reference/endpoint/get_filter",
+        "api-reference/endpoint/get_specific_filter",
+        "api-reference/endpoint/create_filter",
+        "api-reference/endpoint/delete_filter",
+        "api-reference/endpoint/get_attacks"
+      ]
+    },
+    {
+      "group": "DDoS Mitigation [Provider]",
+      "pages": [
+        "api-reference/endpoint/create_user",
+        "api-reference/endpoint/reset_password",
+        "api-reference/endpoint/add_ips",
+        "api-reference/endpoint/delete_ips",
+        "api-reference/endpoint/get_firewall_provider",
+        "api-reference/endpoint/get_filter_provider"
       ]
     }
   ],

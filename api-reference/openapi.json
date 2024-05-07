@@ -85,6 +85,72 @@
         }
       }
     },
+    "/user": {
+      "get": {
+        "description": "Retrieves anti-ddos firewall rules",
+        "responses": {
+          "200": {
+            "description": "Lists all firewallrules created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new firewall rule",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/new_user"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created firewall rule with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/firewall/rule/{uuid}": {
       "get": {
         "description": "Retrieves anti-ddos firewall rule based on uuid",
@@ -116,6 +182,336 @@
       },
       "delete": {
         "description": "Deletes anti-ddos firewall rule based on uuid.",
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "Firewall rule marked for deletion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/filter": {
+      "get": {
+        "description": "Retrieves anti-ddos filter",
+        "responses": {
+          "200": {
+            "description": "Lists all firewallrules created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new filter",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/new_filter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created filters with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/reset-password": {
+      "post": {
+        "description": "Resets password of selected user",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reset_password"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created filters with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/add-ips": {
+      "post": {
+        "description": "Adds allowed IPs to selected user.",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/add_ips"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created filters with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/delete-ips": {
+      "post": {
+        "description": "Deleted allowed IPs of selected user.",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/delete_ips"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created filters with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provider/firewall/rule": {
+      "get": {
+        "description": "Retrieves anti-ddos firewall rules of all provider's users",
+        "responses": {
+          "200": {
+            "description": "Lists all firewallrules created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provider/filter": {
+      "get": {
+        "description": "Retrieves anti-ddos filters of all provider's users",
+        "responses": {
+          "200": {
+            "description": "Lists all firewallrules created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attacks": {
+      "get": {
+        "description": "Retrieves DDoS attacks",
+        "responses": {
+          "200": {
+            "description": "Lists all firewallrules created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/filter/{uuid}": {
+      "get": {
+        "description": "Retrieves anti-ddos filter based on uuid",
+        "responses": {
+          "200": {
+            "description": "Lists specific rule based on uuid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes anti-ddos filter based on uuid.",
         "parameters": [
         ],
         "responses": {
@@ -219,6 +615,191 @@
               },
               "tcpflags_out_of": {
                 "description": "TCP flags the rule must match to. Allowed options: fin, syn, rst, psh, ack, urg, ece, cwr",
+                "type": "array"
+              }
+              }
+            }
+        ]
+      },
+      "new_filter": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "dst",
+              "port",
+              "filter",
+              "priority"
+            ],
+            "type": "object",
+            "properties": {
+              "dst": {
+                "description": "Destination IP the firewall rule needs to be created for (subnets supported).",
+                "type": "string"
+              },
+              "src": {
+                "description": "Source IP the firewall rule needs to match (subnets supported).",
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string",
+                    "description": "Start IP address for source IP range"
+                  },
+                  "end": {
+                    "type": "string",
+                    "description": "End IP address for source IP range"
+                  }
+                }
+              },
+              "port": {
+                "type": "object",
+                "properties": {
+                  "src": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "integer",
+                        "description": "Start port number for source port range"
+                      },
+                      "end": {
+                        "type": "integer",
+                        "description": "End port number for source port range"
+                      }
+                    }
+                  },
+                  "dst": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "integer",
+                        "description": "Start port number for destination port range"
+                      },
+                      "end": {
+                        "type": "integer",
+                        "description": "End port number for destination port range"
+                      }
+                    }
+                  }
+                }
+              },
+              "priority": {
+                "description": "Rule priority with 1 being highest priority.",
+                "type": "integer"
+              },
+              "filter": {
+                "description": "Filter ID, see DDoS Protection documentation for supported filters",
+                "type": "integer"
+              },
+              "ratelimit": {
+                "description": "Ratelimit 1 - 25000",
+                "type": "integer"
+              }
+              }
+            }
+        ]
+      },
+      "new_user": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "username",
+              "email",
+              "password",
+              "ips"
+            ],
+            "type": "object",
+            "properties": {
+              "username": {
+                "description": "Username for the new created user.",
+                "type": "string"
+              },
+              "email": {
+                "description": "Email for the new created user",
+                "type": "string"
+              },
+              "password": {
+                "description": "Password for the new created user",
+                "type": "string"
+              },
+              "ips": {
+                "description": "IP subnet(s) the user has acces too",
+                "type": "array"
+              }
+              }
+            }
+        ]
+      },
+      "reset_password": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "email",
+              "password"
+            ],
+            "type": "object",
+            "properties": {
+              "email": {
+                "description": "User email address",
+                "type": "string"
+              },
+              "password": {
+                "description": "New password for the selected user",
+                "type": "string"
+              }
+              }
+            }
+        ]
+      },
+      "add_ips": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "user_uuid",
+              "ips"
+            ],
+            "type": "object",
+            "properties": {
+              "user_uuid": {
+                "description": "User UUID of selected user",
+                "type": "string"
+              },
+              "ips": {
+                "description": "IP subnet(s) that have to be added to access list",
+                "type": "array"
+              }
+              }
+            }
+        ]
+      },
+      "delete_ips": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "user_uuid",
+              "ips"
+            ],
+            "type": "object",
+            "properties": {
+              "user_uuid": {
+                "description": "User UUID of selected user",
+                "type": "string"
+              },
+              "ips": {
+                "description": "IP subnet(s) that have to be removed from user access list",
                 "type": "array"
               }
               }
