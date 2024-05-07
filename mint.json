@@ -57,6 +57,15 @@
       ]
     },
     {
+      "group": "DDoS Mitigation",
+      "pages": [
+        "overview",
+        "edge_rules",
+        "application_shield",
+        "technical_impact"
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction"

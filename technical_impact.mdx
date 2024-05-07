@@ -1,0 +1,16 @@
+---
+title: Technical Impact
+description: ''
+---
+
+
+During active DDoS Mitigation, certain effects may be observed:
+
+- Incoming DNS replies are restricted to specific IP addresses, including 1.1.1.1, 8.8.4.4, 8.8.8.8, and our internal DNS caches.
+- ICMP traffic may undergo rate limiting, be discarded, or receive replies. Consequently, ICMP packet loss or increased latency could occur, albeit without impacting other protocols.
+- TCP traffic mandates authentication, potentially resulting in connection resets during initial connection attempts.
+- UDP traffic may experience rate limiting or require reconnection under specific conditions.
+- It's important to note that ICMP traffic will be subject to rate limiting, replies, or discarding. Therefore, the stability of ICMP traffic should not be relied upon when DDoS-Filters are active. Any packet loss for ICMP or unusual behavior does not necessarily indicate a problem.
+
+Should you encounter any other effects, please reach out to our customer support team. With our extensive logging and flow collection, we can typically investigate and address any reported anomalies.
+<Note>Cloudflare or other CDNs may not work due to the TCP reset once mitigation is active. In case of issues with your CDN, please open a ticket.</Note>

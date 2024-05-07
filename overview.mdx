@@ -1,0 +1,45 @@
+---
+title: Overview
+description: ''
+---
+
+### Time-To-Detect ###
+DDoS Attacks are usually detected within 2-10 seconds depending on the size of the attack. This applies also for Carpet Bombing Attacks, which might target whole subnets instead of single hosts.
+
+### ICMP ###
+Echo-Reply packets undergo a restriction, allowing only 1500 packets per destination IP address. When this threshold is met, Echo-Reply packets are no longer accepted. Similarly, Echo-Request packets are subject to a limit of 1500 packets per destination IP address. Upon reaching this limit, the system initiates a response to Echo-Request packets with Echo-Reply packets, effectively halting further forwarding to the designated IP address.
+
+### TCP ###
+
+#### Anomalies ####
+Anomalies such as packets with invalid tcp flag combinations or same source as destination port are discarded.
+
+#### Ratelimits ####
+Ratelimits might be applied depending on the amount of packets a single client generates.
+
+#### Synproxy ####
+Each TCP SYN packet undergoes authentication through a Synproxy, in addition to stateful filters. The Synproxy system's implementation could potentially reset the initial connection attempt. Typically, this prompts the client to retry the connection, following which the TCP handshake concludes.
+
+### UDP ###
+
+#### UDP Anomaly ####
+Anomalies serve as widely recognized entry points utilized in UDP reflection attacks. UDP traffic is observed on commonly used TCP ports like 22, 25, 80, and 443. Additionally, anomalies encompass invalid checksums and instances where the source and destination ports are identical.
+
+#### UDP Challenge ####
+The following ports implement challenge-response authentication:
+
+- Port 53: All DNS requests receive a DNS Truncate response, prompting the client to reconnect using TCP.
+- Ports 2300-2400: Only traffic related to Arma3/DayZ servers is permitted, with certain packets cached using Game-Query-Cache.
+- Ports 9000-9999: Only traffic for Teamspeak3 servers is allowed, with certain packets cached using Game-Query-Cache.
+- Ports 27000-28000: Only traffic for Source Engine Gameservers is permitted, with certain packets cached using Game-Query-Cache.
+- Ports 30000-32000: Only traffic for FiveM Gameservers is allowed, and getinfo/getstatus queries are cached using Game-Query-Cache.
+
+#### UDP Ratelimit ####
+We've established precise rate limits for widely recognized UDP destination port ranges. Each source IP address is subject to a default rate limit of 120 packets per second (pps). However, these default limits can be overridden by custom-defined rate limits. It's essential to ensure that your service operates within the custom-defined default port range. For instance, maintaining stability for Source Engine Games requires operating within the port range of 27000-28000, as the default rate limit of 120pps may prove insufficient.
+<Note>Applying application filters will overwrite standard UDP ratelimits.</Note>
+
+#### UDP Deep-Packet-Inspection ####
+Certain packet contents from recognizable attack paterns are disregarded based on their payload. This necessitates the implementation of Deep Packet Inspection (DPI).
+
+#### UDP Firstconnect ####
+To counter spoofed UDP packets, we've developed an advanced algorithm capable of monitoring the UDP packet's state and responding appropriately, either by accepting or discarding it. The initial connection filter effectively sifts through any remaining undesirable traffic.
