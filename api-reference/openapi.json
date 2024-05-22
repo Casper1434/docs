@@ -557,7 +557,6 @@
           },
           {
             "required": [
-              "descr",
               "dst",
               "protocol",
               "action",
@@ -566,31 +565,64 @@
             "type": "object",
             "properties": {
               "descr": {
-                "description": "Description of the Firewall rule.",
+                "description": "Description of the firewall rule.",
                 "type": "string"
               },
               "dst": {
                 "description": "Destination IP the firewall rule needs to be created for (subnets supported).",
                 "type": "string"
               },
-              "dstport": {
-                "description": "Destination port the firewall rule needs to be created for.",
-                "type": "string"
-              },
               "src": {
-                "description": "Source IP the firewall rule needs to match (subnets supported).",
-                "type": "string"
+                "description": "Source IP the firewall rule needs to match.",
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string",
+                    "description": "Start IP address for source IP range"
+                  },
+                  "end": {
+                    "type": "string",
+                    "description": "End IP address for source IP range"
+                  }
+                }
               },
-              "srcport": {
-                "description": "Source port the firewall rule needs to match.",
-                "type": "string"
+              "port": {
+                "type": "object",
+                "properties": {
+                  "src": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "integer",
+                        "description": "Start port number for source port range"
+                      },
+                      "end": {
+                        "type": "integer",
+                        "description": "End port number for source port range"
+                      }
+                    }
+                  },
+                  "dst": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "integer",
+                        "description": "Start port number for destination port range"
+                      },
+                      "end": {
+                        "type": "integer",
+                        "description": "End port number for destination port range"
+                      }
+                    }
+                  }
+                }
               },
               "protocol": {
-                "description": "Internet Protocol version this rule applies to. Allowed options: any, tcp, udp, tcp/udp, esp, ah, gre, eoip, ipv6, igmp, pim, ospf, sctp, carp ",
+                "description": "Internet Protocol version this rule applies to. Allowed options: ip, hopopt, icmp, igmp, ggp, ipencap, st, tcp, egp, igp, pup, udp, hmp, xns-idp, rdp, iso-tp4, dccp, xtp, ddp, idpr-cmtp, ipv6, ipv6-route, ipv6-frag, idrp, rsvp, gre, esp, ah, skip, ipv6-icmp, ipv6-nonxt, ipv6-opts, rspf, vmtp, eigrp, ospf, ax.25, ipip, etherip, encap, pim, ipcomp, vrrp, l2tp, isis, sctp, fc, mobility-header, udplite, mpls-in-ip, manet, hip, shim6, wesp, rohc, ethernet, mptcp ",
                 "type": "string"
               },
               "action": {
-                "description": "Allowed options: pass, block",
+                "description": "Allowed options: accept, continue, drop and reject",
                 "type": "string"
               },
               "priority": {
@@ -601,21 +633,21 @@
                 "description": "Enable or disable the firewall rule.",
                 "type": "boolean"
               },
-              "icmptype": {
-                "description": "ICMP Subtypes, allowed options: althost, dataconv, echorep, echoreq,inforep, inforeq, ipv6-here, ipv6-where, maskrep, maskreq, mobredir, mobregrep, mobregreq, paramprob, photuris, redir, routeradv, routersol, skip, squench, timerep, timereq, timex, trace, unreach",
-                "type": "array"
-              },
-              "tcpflags_any": {
-                "description": "Allow TCP with any flags set",
-                "type": "boolean"
-              },
-              "tcpflags_set": {
+              "tcpflags": {
                 "description": "TCP flags the rule must match to. Allowed options: fin, syn, rst, psh, ack, urg, ece, cwr",
                 "type": "array"
               },
-              "tcpflags_out_of": {
-                "description": "TCP flags the rule must match to. Allowed options: fin, syn, rst, psh, ack, urg, ece, cwr",
-                "type": "array"
+              "ratelimit": {
+                "description": "Ratelimit 0 - 4294967295.",
+                "type": "number"
+              },
+              "packetlength": {
+                "description": "Packet length 1 - 65535.",
+                "type": "number"
+              },
+              "packettype": {
+                "description": "Allowed options: broadcast, host, multicast, other",
+                "type": "integer"
               }
               }
             }
@@ -640,7 +672,7 @@
                 "type": "string"
               },
               "src": {
-                "description": "Source IP the firewall rule needs to match (subnets supported).",
+                "description": "Source IP the filter needs to match.",
                 "type": "object",
                 "properties": {
                   "start": {
