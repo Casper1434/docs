@@ -663,7 +663,7 @@
               "dst",
               "port",
               "filter",
-              "priorityy"
+              "priority"
             ],
             "type": "object",
             "properties": {
