@@ -648,6 +648,10 @@
               "packettype": {
                 "description": "Allowed options: broadcast, host, multicast, other",
                 "type": "integer"
+              },
+              "statetype": {
+                "description": "Allowed options: established, invalid, new, related.",
+                "type": "string"
               }
               }
             }
