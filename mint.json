@@ -62,6 +62,7 @@
         "overview",
         "edge_rules",
         "application_shield",
+        "flowrules",
         "technical_impact"
       ]
     },
