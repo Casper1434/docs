@@ -9,6 +9,6 @@ Edge rules are firewall rules applied on our edge that can be established via bo
 
 Please read the below points carefully to understand how edge rules are configured properly.
 
-- Edge rules can be formulated for individual IP prefixes (IPv4 /32) or entire subnets (IPv4 /24, for instance), employing the longest-prefix-match principle. Longest-Prefix-Match (LPM) entails that only rules corresponding to the longest prefix will be applicable. For instance, if rules for both /32 and /24 prefixes exist, only the /32 rules will be executed. In the absence of a rule for /32 but presence of one for /24, the /24 rules will be executed.
-- Rules are executed prior to any other filtering logic, enabling the whitelisting, blacklisting of traffic, or configuration of subsequent filter logic.
-- Edge rules are executed based on priority, where a priority of 1 indicates the highest precedence. This ensures that rules with lower priority numbers are processed after those with higher priority numbers, allowing for precise control over rule execution order.
+- Edge rules can be formulated for individual IP prefixes (IPv4 /32) or entire subnets (IPv4 /24, for instance).
+- The rules are processed before any other filter logic is hit and applied on our edge, enabling the whitelisting, blacklisting of traffic, or configuration of subsequent filter logic.
+- Edge rules are executed based on priority, where a priority of 1 indicates the highest precedence. This ensures that rules with lower priority numbers are processed after those with higher priority numbers, allowing for precise control over rule execution order. The priority of the rules is dynamic, meaning you can insert new rules at any position among existing ones.
