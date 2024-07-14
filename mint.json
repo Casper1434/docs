@@ -88,6 +88,15 @@
       ]
     },
     {
+      "group": "Network",
+      "pages": [
+        "api-reference/endpoint/create_tunnel",
+        "api-reference/endpoint/create_rdns",
+        "api-reference/endpoint/update_rdns",
+        "api-reference/endpoint/delete_rdns"
+      ]
+    },
+    {
       "group": "DDoS Mitigation [Provider]",
       "pages": [
         "api-reference/endpoint/create_user",

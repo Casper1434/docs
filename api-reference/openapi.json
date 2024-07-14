@@ -277,6 +277,146 @@
         }
       }
     },
+    "/rdns": {
+      "get": {
+        "description": "Retrieves all rDNS records",
+        "responses": {
+          "200": {
+            "description": "Lists all rDNS created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new rDNS record",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/new_rdns"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created rDNS record with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Updated a rDNS record",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/new_rdns"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created rDNS record with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tunnel": {
+      "post": {
+        "description": "Creates a new tunnel",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/new_tunnel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created tunnel with tunnel information as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user/reset-password": {
       "post": {
         "description": "Resets password of selected user",
@@ -731,6 +871,63 @@
               "ratelimit": {
                 "description": "Ratelimit 1 - 25000",
                 "type": "integer"
+              }
+              }
+            }
+        ]
+      },
+      "new_tunnel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "ips",
+              "endpoint",
+              "type"
+            ],
+            "type": "object",
+            "properties": {
+              "ips": {
+                "description": "IP subnet(s) to route through the tunnel.",
+                "type": "array"
+              },
+              "endpoint": {
+                "description": "Endpoint for the new created user.",
+                "type": "string"
+              },
+              "type": {
+                "description": "Tunnel type. Allowed options: GRE, Geneve.",
+                "type": "string"
+              },
+              "locations": {
+                "description": "**Advanced:** Specify locations to create a tunnel only on routers at the specified locations. See DDoS Mitigation overview for available locations.",
+                "type": "array"
+              }
+              }
+            }
+        ]
+      },
+      "new_rdns": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "ips",
+              "record"
+            ],
+            "type": "object",
+            "properties": {
+              "ips": {
+                "description": "IP subnet(s) for which the PTR record is created.",
+                "type": "string"
+              },
+              "record": {
+                "description": "PTR Record.",
+                "type": "string"
               }
               }
             }
