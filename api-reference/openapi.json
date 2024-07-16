@@ -213,10 +213,10 @@
     },
     "/filter": {
       "get": {
-        "description": "Retrieves anti-ddos filter",
+        "description": "Retrieves anti-ddos filters",
         "responses": {
           "200": {
-            "description": "Lists all firewallrules created",
+            "description": "Lists all filters created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -256,6 +256,72 @@
         "responses": {
           "200": {
             "description": "Returns newly created filters with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flowrule": {
+      "get": {
+        "description": "Retrieves anti-ddos flowrules",
+        "responses": {
+          "200": {
+            "description": "Lists all flowrules created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new flowrule",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/new_flowrule"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns newly created flowrule with uuid as json.",
             "content": {
               "application/json": {
                 "schema": {
@@ -343,7 +409,7 @@
         }
       },
       "put": {
-        "description": "Updated a rDNS record",
+        "description": "Update a rDNS record",
         "requestBody": {
           "description": "Plant to add to the store",
           "content": {
@@ -358,6 +424,42 @@
         "responses": {
           "200": {
             "description": "Returns newly created rDNS record with uuid as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a rDNS record",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/delete_rdns"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "rDNS record marked for deletion.",
             "content": {
               "application/json": {
                 "schema": {
@@ -396,6 +498,42 @@
         "responses": {
           "200": {
             "description": "Returns newly created tunnel with tunnel information as json.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/list_rules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Retrieves tunnels",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/list_rules"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Lists all tunnels created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -591,6 +729,36 @@
         }
       }
     },
+    "/provider/flowrule": {
+      "get": {
+        "description": "Retrieves anti-ddos flowrules of all provider's users",
+        "responses": {
+          "200": {
+            "description": "Lists all flowrules created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/attacks": {
       "get": {
         "description": "Retrieves DDoS attacks",
@@ -621,12 +789,132 @@
         }
       }
     },
+    "/tunnel/{uuid}": {
+      "get": {
+        "description": "Retrieves tunnel based on uuid",
+        "responses": {
+          "200": {
+            "description": "Lists specific tunnel based on uuid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes tunnel based on uuid.",
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "Tunnel marked for deletion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flowrule/{uuid}": {
+      "get": {
+        "description": "Retrieves anti-ddos flowrule based on uuid",
+        "responses": {
+          "200": {
+            "description": "Lists specific flowrules based on uuid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes anti-ddos flowrule based on uuid.",
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "Flowrule marked for deletion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/list_rules"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/filter/{uuid}": {
       "get": {
         "description": "Retrieves anti-ddos filter based on uuid",
         "responses": {
           "200": {
-            "description": "Lists specific rule based on uuid.",
+            "description": "Lists specific filters based on uuid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -656,7 +944,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Firewall rule marked for deletion.",
+            "description": "Filter marked for deletion.",
             "content": {
               "application/json": {
                 "schema": {
@@ -812,7 +1100,7 @@
             "type": "object",
             "properties": {
               "dst": {
-                "description": "Destination IP the firewall rule needs to be created for (subnets supported).",
+                "description": "Destination IP the filter needs to be created for (subnets supported).",
                 "type": "string"
               },
               "src": {
@@ -876,6 +1164,136 @@
             }
         ]
       },
+      "new_flowrule": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "dst",
+              "protocol",
+              "layer4",
+              "rate"
+            ],
+            "type": "object",
+            "properties": {
+              "dst": {
+                "description": "Destination IP the flowrule needs to be created for (subnets supported).",
+                "type": "string",
+                "example": false
+              },
+              "port": {
+                "type": "object",
+                "properties": {
+                  "match": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "src": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "integer",
+                        "description": "Start port number for source port range",
+                        "example": 0
+                      },
+                      "end": {
+                        "type": "integer",
+                        "description": "End port number for source port range",
+                        "example": 0
+                      }
+                    }
+                  },
+                  "dst": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "integer",
+                        "description": "Start port number for destination port range",
+                        "example": 0
+                      },
+                      "end": {
+                        "type": "integer",
+                        "description": "End port number for destination port range",
+                        "example": 0
+                      }
+                    }
+                  }
+                }
+              },
+              "protocol": {
+                "description": "Protocol type (e.g., tcp, udp).",
+                "type": "string"
+              },
+              "packetlength": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "integer",
+                    "description": "Start length for packet length range",
+                    "example": 0
+                  },
+                  "end": {
+                    "type": "integer",
+                    "description": "End length for packet length range",
+                    "example": 0
+                  }
+                }
+              },
+              "rate": {
+                "type": "object",
+                "properties": {
+                  "mbit": {
+                    "type": "integer",
+                    "description": "Rate limit in megabits per second",
+                    "example": 0
+                  },
+                  "kpps": {
+                    "type": "integer",
+                    "description": "Rate limit in kilopackets per second",
+                    "example": 0
+                  }
+                }
+              },
+              "threshold": {
+                "type": "object",
+                "properties": {
+                  "set": {
+                    "type": "boolean",
+                    "description": "Whether threshold is set",
+                    "example": false
+                  },
+                  "mbit": {
+                    "type": "integer",
+                    "description": "Threshold in megabits per second",
+                    "example": 0
+                  },
+                  "kpps": {
+                    "type": "integer",
+                    "description": "Threshold in kilopackets per second",
+                    "example": 0
+                  }
+                }
+              },
+              "layer4": {
+                "description": "Indicates if layer 4 filtering is applied",
+                "type": "boolean",
+                "example": false
+              },
+              "layer7": {
+                "description": "Indicates if layer 7 filtering is applied",
+                "type": "boolean",
+                "example": false
+              },
+              "priority": {
+                "description": "Rule priority with 1 being highest priority.",
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      },
       "new_tunnel": {
         "allOf": [
           {
@@ -927,6 +1345,25 @@
               },
               "record": {
                 "description": "PTR Record.",
+                "type": "string"
+              }
+              }
+            }
+        ]
+      },
+      "delete_rdns": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list_rules"
+          },
+          {
+            "required": [
+              "ips"
+            ],
+            "type": "object",
+            "properties": {
+              "ips": {
+                "description": "IP of which the rDNS record needs to be deleted for.",
                 "type": "string"
               }
               }

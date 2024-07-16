@@ -84,6 +84,10 @@
         "api-reference/endpoint/get_specific_filter",
         "api-reference/endpoint/create_filter",
         "api-reference/endpoint/delete_filter",
+        "api-reference/endpoint/get_flowrule",
+        "api-reference/endpoint/get_specific_flowrule",
+        "api-reference/endpoint/create_flowrule",
+        "api-reference/endpoint/delete_flowrule",
         "api-reference/endpoint/get_attacks"
       ]
     },
@@ -91,6 +95,9 @@
       "group": "Network",
       "pages": [
         "api-reference/endpoint/create_tunnel",
+        "api-reference/endpoint/get_tunnel",
+        "api-reference/endpoint/get_specific_tunnel",
+        "api-reference/endpoint/delete_tunnel",
         "api-reference/endpoint/create_rdns",
         "api-reference/endpoint/update_rdns",
         "api-reference/endpoint/delete_rdns"
@@ -104,7 +111,8 @@
         "api-reference/endpoint/add_ips",
         "api-reference/endpoint/delete_ips",
         "api-reference/endpoint/get_firewall_provider",
-        "api-reference/endpoint/get_filter_provider"
+        "api-reference/endpoint/get_filter_provider",
+        "api-reference/endpoint/get_flowrule_provider"
       ]
     }
   ],
