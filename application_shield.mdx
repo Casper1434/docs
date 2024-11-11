@@ -3,52 +3,54 @@ title: Application Shield
 description: ''
 ---
 
-
 Our network boasts robust security measures, including specialized DDoS protection tailored for gaming. Given the rising sophistication of attacks mimicking gaming traffic, we've fortified our defenses with dedicated filters customized for various games. These custom filters strengthen our security framework and protect against DDoS attacks targeting online gaming platforms.
 
 If your desired game is not listed below, do not hesitate to contact us. We are open to implementing customised DDoS protection solutions tailored to your game's unique needs.
 
 **The following port-ranges has been implemented specifically to operate the following gameservers:**
 
-| Port range   | Game                           | 
-| -------- | ------------------------------------- 
-| 2300-2400   | DayZ and Arma 3, as well as Arma 3 Query          |
-| 5761-5794      | Atlas | 
-| 7000-8999      | Generic Games |
-| 9000-9999      | Teamspeak3 | 
-| 12800-13100   | Hurtworld | 
-| 19132   | Minecraft Pocket Edition | 
-| 22000-22020   | Rage-MP / MTA |
-| 22126   | Rage-MP / MTA | 
-| 23000-23200   | Battlefield | 
-| 27000-28000   | All Source Engine / Query Games
-| 30000-32000   | FiveM GTA-MP |
-| 36123-36128   | Stormworks | 
+| Port range  | Game                                     |
+| ----------- | :--------------------------------------- |
+| 2300-2400   | DayZ and Arma 3, as well as Arma 3 Query |
+| 5761-5794   | Atlas                                    |
+| 7000-8999   | Generic Games                            |
+| 9000-9999   | Teamspeak3                               |
+| 12800-13100 | Hurtworld                                |
+| 19132       | Minecraft Pocket Edition                 |
+| 22000-22020 | Rage-MP / MTA                            |
+| 22126       | Rage-MP / MTA                            |
+| 23000-23200 | Battlefield                              |
+| 27000-28000 | All Source Engine / Query Games          |
+| 30000-32000 | FiveM GTA-MP                             |
+| 36123-36128 | Stormworks                               |
 
 <Note>Please use the recommended ranges. If you miss a game, please contact our customer service. We will analyze the game in question and add specific filters.</Note>
 
-#### Application filters ####
+#### Application filters
+
 Application filters can be established via both APIv1 and the Firewall Panel, allowing to configure game filters on spefic ports (ranges) with the option to set ratelimits, source IPs (range), source ports (ranges) and destination ports (ranges).
 
 **The following (UDP) application filters are available and can be applied to any port (range):**
 
-| Filter ID   | Game                           | 
-| ------------ | ------------------------------ | 
-| 0              | Disable entirely              | 
-| 2203         | Multi Theft Auto - San Andreas| 
-| 2324         | DayZ:SA / ArmA 3              | 
-| 2629         | DTLS over UDP                 | 
-| 2728         | Source Engine (Generic)       | 
-| 2896         | SCUM                           | 
-| 3032         | Cfx.re (FiveM / RedM)         | 
-| 3659         | Battlefield 4                  | 
-| 4970         | Call of Duty Black Ops 2 Plutonium| 
-| 7770         | Mordhau                        | 
-| 7771         | alt:V Multiplayer              | 
-| 7772         | San Andreas Multiplayer (SA:MP)| 
-| 7773         | SCP: Secret Laboratory         | 
-| 7774         | 7 Days to Die                  | 
-| 9999         | TeamSpeak 3                    |
-#### UDP Ratelimit ####
+| Filter ID | Game                               |
+| --------- | ---------------------------------- |
+| 0         | Disable entirely                   |
+| 2203      | Multi Theft Auto - San Andreas     |
+| 2324      | DayZ:SA / ArmA 3                   |
+| 2629      | DTLS over UDP                      |
+| 2728      | Source Engine (Generic)            |
+| 2896      | SCUM                               |
+| 3032      | Cfx.re (FiveM / RedM)              |
+| 3659      | Battlefield 4                      |
+| 4970      | Call of Duty Black Ops 2 Plutonium |
+| 7770      | Mordhau                            |
+| 7771      | alt:V Multiplayer                  |
+| 7772      | San Andreas Multiplayer (SA:MP)    |
+| 7773      | SCP: Secret Laboratory             |
+| 7774      | 7 Days to Die                      |
+| 9999      | TeamSpeak 3                        |
+
+#### UDP Ratelimit
+
 We've established precise rate limits for widely recognized UDP destination port ranges. Each source IP address is subject to a default rate limit of 120 packets per second (pps). However, these default limits can be overridden by custom-defined rate limits. It's essential to ensure that your service operates within the custom-defined default port range. For instance, maintaining stability for Source Engine Games requires operating within the port range of 27000-28000, as the default rate limit of 120pps may prove insufficient.
 <Note>Applying application filters will overwrite standard UDP ratelimits.</Note>
